@@ -1,0 +1,22 @@
+{
+  "name": "node-express-mongo-practice",
+  "description": "",
+  "main": "",
+  "authors": [
+    "jtabach <jeff.n.tabachnick@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/jtabach/node-express-mongo-practice",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6"
+  }
+}
