@@ -34,12 +34,22 @@ userSchema.statics.login = function(userObj, cb) {
 	ref.authWithPassword(userObj, function(err, firebaseObj) {
 		if (err) return cb(err);
 
-		User.findOne({firebaseID: firebaseObj.uid}, function(err, userObj) {
+		User.findOne({firebaseId: firebaseObj.uid}, function(err, userObj) {
 			if (err || !userObj) return cb(err || "user not found");
-
+			var token = userObj.generateToken();
+			cb(null, token);
 		})		
-
 	})
+}
+
+userSchema.methods.generateToken = function() {
+	var payload = {
+		firebaseId: this.firebaseId,
+		_id: this._id
+	};
+
+	var token = jwt.encode(payload, JWT_SECRET);
+	return token;
 }
 
 

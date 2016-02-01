@@ -14,7 +14,7 @@ router.post('/login', function(req, res) {
 	// req.body is recieved from user login form.
 	User.login(req.body, function(err, token) {
 		if (err) return res.status(400).send(err);
-		res.cookie('userToken', token).send('User is logged in');
+		res.cookie('userToken', token).send(token);
 	})
 })
 
