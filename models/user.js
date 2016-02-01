@@ -42,6 +42,20 @@ userSchema.statics.login = function(userObj, cb) {
 	})
 }
 
+userSchema.statics.isLoggedIn = function(req, res, next) {
+	var token = req.cookies.userToken;
+	if (!token) return res.status(401).send('Authentication failed: No Token found');
+
+	try {
+		var payload = jwt.decode(token, JWT_SECRET);
+	} catch (err) {
+		return res.status(401).send('Authentication failed: Decode failed');
+	}
+
+	req.token = payload;
+	next();
+}
+
 userSchema.methods.generateToken = function() {
 	var payload = {
 		firebaseId: this.firebaseId,
