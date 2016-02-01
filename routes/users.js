@@ -19,7 +19,7 @@ router.post('/login', function(req, res) {
 })
 
 router.get('/profile', User.isLoggedIn, function(req, res) {
-	User.findOne(req.token._id, function(err, userObj) {
+	User.findById(req.token._id, function(err, userObj) {
 		res.status(err ? 400 : 200).send(err || userObj);
 	})
 })

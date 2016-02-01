@@ -43,6 +43,7 @@ userSchema.statics.login = function(userObj, cb) {
 }
 
 userSchema.statics.isLoggedIn = function(req, res, next) {
+	console.log(req.cookies.userToken);
 	var token = req.cookies.userToken;
 	if (!token) return res.status(401).send('Authentication failed: No Token found');
 
